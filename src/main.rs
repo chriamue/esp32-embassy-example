@@ -26,7 +26,7 @@ async fn main(spawner: Spawner) {
 
     embassy::init(
         &clocks,
-        esp32c3_hal::timer::TimerGroup::new(peripherals.TIMG0, &clocks).timer0,
+        esp32c3_hal::timer::TimerGroup::new(peripherals.TIMG0, &clocks),
     );
 
     spawner.spawn(one_second_task()).unwrap();
