@@ -14,7 +14,8 @@ espup install
 On Mac, if openssl does not work:
 
 ```bash
-OPENSSL_NO_VENDOR=1 cargo install espup
+cargo install ldproxy
+OPENSSL_NO_VENDOR=1 cargo install espup@=0.10.0
 OPENSSL_NO_VENDOR=1 cargo install cargo-espflash
 ```
 
@@ -22,11 +23,12 @@ OPENSSL_NO_VENDOR=1 cargo install cargo-espflash
 ## Flashing
 
 ```bash
-cargo espflash flash --release --monitor
+CRATE_CC_NO_DEFAULTS=1 cargo espflash flash --features=esp32s3 --release --monitor
 ```
 
 ```bash
-cargo +esp run --no-default-features --features=esp32s3 --release --target xtensa-esp32s3-none-elf
+. $HOME/export-esp.sh
+CRATE_CC_NO_DEFAULTS=1 cargo +esp run --no-default-features --features=esp32s3 --release --target xtensa-esp32s3-espidf
 ```
 
 

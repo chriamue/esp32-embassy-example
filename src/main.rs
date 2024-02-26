@@ -32,7 +32,7 @@ async fn main(spawner: Spawner) {
     #[cfg(feature = "embassy-time-systick")]
     embassy::init(
         &clocks,
-        esp32c3_hal::systimer::SystemTimer::new(peripherals.SYSTIMER),
+        SystemTimer::new(peripherals.SYSTIMER),
     );
 
     #[cfg(feature = "embassy-time-timg0")]
@@ -42,6 +42,7 @@ async fn main(spawner: Spawner) {
     );
 
     spawner.spawn(run()).ok();
+
 
     loop {
         esp_println::println!("Bing!");
